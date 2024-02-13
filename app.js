@@ -5,10 +5,13 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(cors());
 app.use(express.json());
-mongoose.connect(process.env.MONGODB_URI);
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const dbUri = "mongodb+srv://2302570:nWgjkKqLxWC2FMzj@filmeseseriesbd.80njyu3.mongodb.net/filmeseseriesbd?retryWrites=true&w=majority&tls=true";
+
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conexão com o MongoDB Atlas bem-sucedida.'))
+  .catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
 
 const Utilizador = require("./models/Utilizador");
 
