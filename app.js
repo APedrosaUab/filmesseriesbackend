@@ -703,10 +703,6 @@ app.get('/serie/comentarios/:idSerie', async (req, res) => {
   }
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'filmesseries/index.html'));
-});
-
 app.listen(3000, () => {
   console.log("Servidor a funcionar na porta 3000");
 });
