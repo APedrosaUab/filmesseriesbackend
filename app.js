@@ -22,6 +22,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:8080";
+
 // Função para enviar e-mails
 async function sendEmail({ to, subject, text }) {
   const mailOptions = {
@@ -134,7 +136,7 @@ app.post('/forgot/recuperar-password', async (req, res) => {
 
   await utilizador.save();
 
-  const resetUrl = `https://filmesseriesfrontend.onrender.com/recover/redefinir-password/${resetToken}`;
+  const resetUrl = `${FRONTEND_URL}/recover/redefinir-password/${resetToken}`;
 
   const message = `Foi solicitada a redefinição de password da sua conta. Por favor, clique no link abaixo para redefinir a sua password:\n\n${resetUrl}\n\nSe não fez qualquer solicitação, por favor, ignore este e-mail.`;
 
