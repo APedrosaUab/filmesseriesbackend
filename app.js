@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(cors());
 app.use(express.json());
-mongoose.connect("mongodb://localhost:27017/filmeseseriesbd");
+mongoose.connect(process.env.MONGODB_URI);
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
@@ -134,7 +134,7 @@ app.post('/forgot/recuperar-password', async (req, res) => {
 
   await utilizador.save();
 
-  const resetUrl = `http://localhost:8080/recover/redefinir-password/${resetToken}`;
+  const resetUrl = `https://filmesseriesfrontend.onrender.com/recover/redefinir-password/${resetToken}`;
 
   const message = `Foi solicitada a redefinição de password da sua conta. Por favor, clique no link abaixo para redefinir a sua password:\n\n${resetUrl}\n\nSe não fez qualquer solicitação, por favor, ignore este e-mail.`;
 
