@@ -8,9 +8,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const Utilizador = require("./models/Utilizador");
-
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
@@ -45,6 +42,7 @@ function generateSessionToken(user) {
   return jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
 }
 
+const Utilizador = require("./models/Utilizador");
 // LOGIN
 app.post("/login", async (req, res) => {
   try {
